@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I ❤️ U</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    #lockScreen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #ffe6f0, #ffcce5, #ffb6d9); /* Peach with transparency */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    #passwordInput {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    #unlockBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #mainContent {
+      display: none;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom right, #ffe6f0, #fff0f5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #heartMessage {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 80px;
+      animation: popIn 1s ease-out forwards, beat 1s infinite;
+      opacity: 0;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 30px;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { top: -50px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="lockScreen">
+  <h2>Enter the secret password 💌</h2>
+  <input type="password" id="passwordInput" placeholder="Password">
+  <button id="unlockBtn">Unlock</button>
+</div>
+
+<div id="mainContent">
+  <div id="heartMessage">❤️ U</div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const correctPassword = "Hari_loves_mimi";
+
+    document.getElementById("unlockBtn").onclick = function () {
+      const input = document.getElementById("passwordInput").value;
+      if (input === correctPassword) {
+        window.location.href="proposel.html";
+        setTimeout(() => {
+          document.getElementById("heartMessage").style.opacity = 1;
+        }, 500);
+        startEmojiShower();
+      } else {
+        alert("Oops! Wrong password 💔");
+      }
+    };
+
+    function startEmojiShower() {
+      const emojiArray = ["💖", "🌸", "💕", "💘", "😍", "🌷", "💞"];
+      setInterval(() => {
+        const emoji = document.createElement("div");
+        emoji.classList.add("emoji");
+        emoji.innerText = emojiArray[Math.floor(Math.random() * emojiArray.length)];
+        emoji.style.left = Math.random() * window.innerWidth + "px";
+        document.getElementById("mainContent").appendChild(emoji);
+        setTimeout(() => emoji.remove(), 5000);
+      }, 300);
+    }
+  });
+</script>
+
+</body>
+</html>

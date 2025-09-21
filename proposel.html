@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>I ❤️ U</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at center, #ffe6f0, #ffcce5, #ffb6d9);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .loveContainer {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      z-index: 2;
+    }
+
+    .char {
+      opacity: 0;
+      transform: scale(0);
+      animation: pop 0.6s ease-out forwards;
+    }
+
+    .char.i, .char.u {
+      font-family: 'Great Vibes', cursive;
+      font-size: 80px;
+      animation-delay: 0.5s;
+      color: #cc0066;
+    }
+
+    .char.heart {
+      font-size: 120px;
+      color: #ff3366;
+      text-shadow: 0 0 20px #ff99cc, 0 0 40px #ff66b2;
+      animation-delay: 1s;
+      animation-name: pop, beat;
+      animation-duration: 0.6s, 1s;
+      animation-iteration-count: 1, infinite;
+      animation-timing-function: ease-out, ease-in-out;
+      margin: 0 20px;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 50px;
+      animation: float 8s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        top: -50px;
+        opacity: 1;
+        transform: translateX(0) rotate(0deg);
+      }
+      100% {
+        top: 100vh;
+        opacity: 0;
+        transform: translateX(50px) rotate(360deg);
+      }
+    }
+
+    .translations {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Great Vibes', cursive;
+      font-size: 28px;
+      color: #cc0066;
+      text-align: center;
+      line-height: 1.8;
+      z-index: 1;
+      text-shadow: 0 0 5px #fff;
+      animation: fall 20s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { top: -100px; opacity: 1; }
+      100% { top: 100vh; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="loveContainer">
+    <div class="char i">I</div>
+    <div class="char heart">❤️</div>
+    <div class="char u">U</div>
+  </div>
+
+  <div class="translations">
+    நான் உன்னை காதலிக்கிறேன்(Tamil) <br>
+    Je t’aime (French)<br>
+    Te amo (Spanish)<br>
+    Ich liebe dich (German)<br>
+    Ti amo (Italian)<br>
+    愛してる (Japanese)<br>
+    사랑해 (Korean)<br>
+    मैं तुमसे प्यार करता हूँ (Hindi)<br>
+    Eu te amo (Portuguese)<br>
+    我爱你 (Chinese)<br>
+    Я тебя люблю (Russian)<br>
+    Aku cinta kamu (Indonesian)<br>
+    Tôi yêu bạn (Vietnamese)<br>
+    Jag älskar dig (Swedish)<br>
+    Ik hou van jou (Dutch)<br>
+    أحبك (Arabic)<br>
+    אני אוהב אותך (Hebrew)<br>
+    Seni seviyorum (Turkish)<br>
+    Mo nifẹ rẹ (Yoruba)<br>
+    Mahal kita (Tagalog)<br>
+    Aloha wau ia 'oe 
+  </div>
+
+  <script>
+    const emojiSet = ["💖", "🌸", "💕", "💘", "😍", "🌷", "💞", "🎀", "🫶", "💐", "✨"];
+    setInterval(() => {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojiSet[Math.floor(Math.random() * emojiSet.length)];
+      emoji.style.left = Math.random() * window.innerWidth + "px";
+      emoji.style.top = "-50px";
+      document.body.appendChild(emoji);
+      setTimeout(() => emoji.remove(), 8000);
+    }, 300);
+  </script>
+
+</body>
+</html>
